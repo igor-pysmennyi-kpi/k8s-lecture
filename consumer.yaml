@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consumer-deployment
+  labels:
+    app: consumer-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consumer-deployment
+  template:
+    metadata:
+      labels:
+        app: consumer-deployment
+    spec:
+      containers:
+      - name: consumer
+        image: ihor-p/consumer:1
+        env:
+        - name: RABBIT_MQ_HOST
+          value: rabbitmq
+        - name: RABBITMQ_USER
+          value: rmuser
+        - name: RABBITMQ_PASS
+          value: rmpassword
+        - name: QUEUE_NAME
+          value: meassages

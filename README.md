@@ -15,7 +15,8 @@ snap install kubectl --classic
 ```
 Встановимо [minikube](https://kubernetes.io/uk/docs/tasks/tools/install-minikube/):
 ```
-sudo snap install minikube --classic
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+&& sudo install minikube-linux-amd64 /usr/local/bin/minikube
 ```
 Додамо ніштяків (якщо ще нема)
 ```

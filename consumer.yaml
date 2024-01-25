@@ -5,7 +5,7 @@ metadata:
   labels:
     app: consumer-deployment
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: consumer-deployment
@@ -16,13 +16,16 @@ spec:
     spec:
       containers:
       - name: consumer
-        image: ihor-p/consumer:1
+        image: ihorkpi/consumer:1
         env:
         - name: RABBIT_MQ_HOST
           value: rabbitmq
         - name: RABBITMQ_USER
           value: rmuser
         - name: RABBITMQ_PASS
-          value: rmpassword
+          valueFrom:
+            secretKeyRef:
+              name: mq-password
+              key: password
         - name: QUEUE_NAME
           value: meassages

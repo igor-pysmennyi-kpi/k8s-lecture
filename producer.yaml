@@ -16,14 +16,17 @@ spec:
     spec:
       containers:
       - name: producer
-        image: ihor-p/producer:1
+        image: ihorkpi/producer:1
         env:
         - name: RABBIT_MQ_HOST
           value: rabbitmq
         - name: RABBITMQ_USER
           value: rmuser
         - name: RABBITMQ_PASS
-          value: rmpassword
+          valueFrom:
+            secretKeyRef:
+              name: mq-password
+              key: password
         - name: QUEUE_NAME
           value: meassages
 

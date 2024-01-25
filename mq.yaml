@@ -20,8 +20,11 @@ spec:
         env:
         - name: RABBITMQ_DEFAULT_USER
           value: rmuser
-        - name: RABBITMQ_DEFAULT_PASS #to secret
-          value: rmpassword
+        - name: RABBITMQ_DEFAULT_PASS
+          valueFrom:
+            secretKeyRef:
+              name: mq-password
+              key: password
         - name: RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS
           value: -rabbit log_levels [{connection,error},{default,error}] disk_free_limit 2147483648
         ports:
